@@ -26,13 +26,9 @@ public class Album extends Item {
     private String artist;
 
     @Builder
-    public Album(String title, String itemDetail, int price, long stock, LocalDateTime releaseDate,
-                 String subtitle, String artist) {
-        this.title = title;
-        this.itemDetail = itemDetail;
-        this.price = price;
-        this.stock = stock;
-        this.releaseDate = releaseDate;
+    public Album(String title, String itemDetail, int price, long stock, LocalDateTime releaseDate, Long id, String subtitle, String artist) {
+        super(title, itemDetail, price, stock, releaseDate);
+        this.id = id;
         this.subtitle = subtitle;
         this.artist = artist;
     }
