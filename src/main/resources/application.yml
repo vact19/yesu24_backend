@@ -1,16 +1,20 @@
 server:
-  port: 80
+  port: 8080
   servlet:
     context-path: /
 
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/yesu24
-    #url: jdbc:mariadb://localhost:3306/shop?serverTimezone=Asia/Seoul
-    username: sa
-    #driver-class-name: org.mariadb.jdbc.Driver
-    password:
+    url: jdbc:mariadb://localhost:3306/shop?serverTimezone=Asia/Seoul
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ${DBUSERNAME}
+    #username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+    #driver-class-name: org.h2.Driver
+    #url: jdbc:h2:tcp://localhost/~/yesu24
+    #username: sa
+    #password:
 
   jpa:
     hibernate:
@@ -20,7 +24,6 @@ spring:
       hibernate:
         format_sql : true # sql 예쁘게 출력
         default_batch_fetch_size: 100 # 일대다 컬렉션 조회 최적화,
-
     show-sql: true  # sql 출력
     open-in-view: false
 
