@@ -23,12 +23,31 @@ public class TempController {
 
     private final BookRepository bookRepository;
 
-    @Transactional
     @GetMapping("/")
     public String test1(){
 
         return "index";
     }
+
+    @GetMapping("/user/create")
+    @ResponseBody
+    public String test2(@RequestParam(required = false, defaultValue = "기본값") String title){
+        Book book1 = Book.builder()
+                .title(title)
+                .itemDetail("detail")
+                .price(100)
+                .stock(100)
+                .releaseDate(LocalDateTime.now())
+                .author("author")
+                .subtitle("subtitle")
+                .build();
+
+        Book saved = bookRepository.save(book1);
+        return saved.getTitle();
+    }
+
+
+
     @NoArgsConstructor
     @Data
     public static class Student{
@@ -47,32 +66,5 @@ public class TempController {
 
 
 
-    @ResponseBody
-    @PostMapping("/")
-    public String test2(Student student){
-        if(student == null){
-            System.out.println("null");
-        }
-        System.out.println(student.string);
-        return student.getString();
-    }
 
-
-
-    @ResponseBody
-    @PostMapping("/2")
-    public Student2 test3(@RequestBody Student2 student2){
-        if(student2 == null){
-            System.out.println("null");
-        }
-        System.out.println("반환");
-        return student2;
-    }
-
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Getter
-    static class Student2{
-        private String string;
-    }
 }

@@ -5,18 +5,23 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/shop?serverTimezone=Asia/Seoul
-    driver-class-name: org.mariadb.jdbc.Driver
-    username: ${DBUSERNAME}
+    url:  jdbc:mysql://localhost:3306/shop
+    #driver-class-name: org.mariadb.jdbc.Driver
+    username: dbuser
     #username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    password: 12341234
 
     #driver-class-name: org.h2.Driver
     #url: jdbc:h2:tcp://localhost/~/yesu24
     #username: sa
     #password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
 
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: create
 
